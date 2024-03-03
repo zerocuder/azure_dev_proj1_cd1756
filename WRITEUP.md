@@ -1,4 +1,4 @@
-### Analyze
+### Analysis
 #### Cost
 - VM: Higher expenses are accrued as a result of the need for hardware, software licenses, maintenance costs, ...
 - App Service: Reduced costs because of no hardware requirements, software licensing, etc. Some free tier options are also available.
@@ -15,7 +15,7 @@
 - VM: Setting up and configuring manually requires extra time and effort during deployment and management.
 - App Service: Setting up and deploying is quicker and easier due to simplified workflows and automatic configuration.
 
-#### Choose the appropriate solution (VM or App Service) for deploying the app
+### Choose the appropriate solution (VM or App Service) for deploying the app
 Based on the analysis above, the application selected for deployment with App Service offers cost efficiency, scalability, high availability, and a straightforward workflow process.
 
 #### Justify my choice

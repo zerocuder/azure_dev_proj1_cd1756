@@ -94,7 +94,6 @@ def authorized():
             scopes=Config.SCOPE,
             redirect_uri=url_for('authorized', _external=True, _schema='https')
         )
-
         if "error" in result:
             app.logger.info('Authorize failed.')
             return render_template("auth_error.html", result=result)

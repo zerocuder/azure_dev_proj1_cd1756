@@ -44,7 +44,8 @@ az sql db create \
 az storage account create \
    --name namlh20blob \
    --resource-group namlh20-rg-west \
-   --location westus
+   --location westus \
+   --allow-blob-public-access true
 
 # Storage Container
 az storage container create \

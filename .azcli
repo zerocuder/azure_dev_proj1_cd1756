@@ -1,0 +1,73 @@
+az login
+#az account list-locations -o table
+
+# resource group
+az group create --name namlh20-rg-west --location westus
+
+# SQL Server
+az sql server create \
+    --admin-user udacityadmin \
+    --admin-password p@ssword1234 \
+    --name namlh20-prj1-server \
+    --resource-group namlh20-rg-west \
+    --location westus \
+    --enable-public-network true \
+    --verbose
+
+# Firewall for SQL Server
+az sql server firewall-rule create \
+    -g namlh20-rg-west \
+    -s namlh20-prj1-server \
+    -n azureaccess \
+    --start-ip-address 0.0.0.0 \
+    --end-ip-address 0.0.0.0 \
+    --verbose
+
+# Client Firewall Rule
+az sql server firewall-rule create \
+    -g namlh20-rg-west \
+    -s namlh20-prj1-server \
+    -n clientip \
+    --start-ip-address 118.69.117.36 \
+    --end-ip-address 118.69.117.36 \
+    --verbose
+
+# SQL DataBase
+az sql db create \
+    --name namlh20-prj1-db \
+    --resource-group namlh20-rg-west \
+    --server namlh20-prj1-server \
+    --service-objective S0 \
+    --verbose
+
+# Storage account
+az storage account create \
+   --name namlh20blob \
+   --resource-group namlh20-rg-west \
+   --location westus \
+   --allow-blob-public-access true
+
+# Storage Container
+az storage container create \
+   --account-name namlh20blob \
+   --name images \
+   --auth-mode login \
+   --public-access container
+
+# Create web app
+az webapp up \
+   --resource-group namlh20-rg-west \
+   --name namlh20-webapp \
+   --sku F1 \
+   --location westus \
+   --verbose
+
+# Update web app when update code
+$ az webapp up \
+   --name namlh20-webapp \
+   --verbose
+
+
+# -------------------------------
+# Clean up
+az group delete -n namlh20-rg-west
